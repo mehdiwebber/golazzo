@@ -59,20 +59,17 @@ function getWeekDates() {
 }
 
 async function fetchFixtures(date) {
-  const url = `https://v3.football.api-sports.io/fixtures?league=${WC_LEAGUE}&season=2026&date=${date}`;
-  const res = await fetch(url, {
-    headers: { "x-apisports-key": API_KEY },
-  });
+  const url = `/api/fixtures?date=${date}`;
+  const res = await fetch(url);
+
   const data = await res.json();
   return data.response || [];
 }
 
 async function fetchResults() {
-  // last 7 days finished matches
-  const url = `https://v3.football.api-sports.io/fixtures?league=${WC_LEAGUE}&season=2026&status=FT&last=10`;
-  const res = await fetch(url, {
-    headers: { "x-apisports-key": API_KEY },
-  });
+  const url = `/api/fixtures?status=FT&last=10`;
+  const res = await fetch(url);
+
   const data = await res.json();
   return data.response || [];
 }
